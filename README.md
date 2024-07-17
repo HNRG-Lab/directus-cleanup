@@ -6,7 +6,7 @@ A CLI tool to clean up Directus activities
 ## Installation
 Install the package using yarn:
 ```
-yarn add @hnrg/directus-cleanup
+yarn add @hnrg-lab/directus-cleanup
 ```
 
 ## Configuration
