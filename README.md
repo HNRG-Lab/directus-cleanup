@@ -40,7 +40,3 @@ Alternatively, you can set the `DB_ACTIVITIES_RETENTION_DAYS` environment variab
 ```
 yarn directus-cleanup activities
 ```
-
-## License
-This package is developed and maintained internally by H-energy1 S.r.l.
-It is proprietary software and may not be distributed or used outside the company without explicit permission.

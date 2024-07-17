@@ -8,7 +8,6 @@
     "directus-cleanup": "node ./src/index.js"
   },
   "author": "emartinello <enrico.martinello@h-en.me>",
-  "private": true,
   "dependencies": {
     "commander": "^12.1.0",
     "dotenv": "^16.4.5",
