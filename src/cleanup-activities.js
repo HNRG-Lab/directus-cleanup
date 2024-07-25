@@ -1,3 +1,4 @@
+require('dotenv').config()
 const Knex = require('knex')
 const knexConfig = require('../knexfile');
 const knex = Knex(knexConfig)
@@ -7,7 +8,7 @@ const cleanupActivities = async (days) => {
         const date = new Date();
         date.setDate(date.getDate() - days);
 
-        const chunkSize= 5000;
+        const chunkSize = parseInt(process.env.DB_ACTIVITIES_DELETE_CHUNK_SIZE, 10) || 5000;
         let deletedRecords;
 
         do {

@@ -23,6 +23,8 @@ These variables are optional:
 ```
 DB_SSL
 DB_SSL_CA
+DB_ACTIVITIES_RETENTION_DAYS
+DB_ACTIVITIES_DELETE_CHUNK_SIZE (default 5000)
 ```
 
 ## Usage
