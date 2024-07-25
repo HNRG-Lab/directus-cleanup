@@ -1,7 +1,7 @@
 {
   "name": "@hnrg-lab/directus-cleanup",
   "description": "A CLI tool to clean up Directus activities",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "bin": "./src/index.js",
   "main": "./src/index.js",
   "license": "GPL-3.0",
