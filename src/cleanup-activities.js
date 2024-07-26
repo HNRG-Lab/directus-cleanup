@@ -13,12 +13,8 @@ const cleanupActivities = async (days) => {
 
         do {
             try {
-                deletedRecords = await knex('directus_activity')
-                    .where('timestamp', '<', date)
-                    .orderBy('timestamp')
-                    .limit(chunkSize)
-                    .del();
-
+                const result = await knex.raw('DELETE FROM directus_activity WHERE timestamp < ? ORDER BY timestamp DESC LIMIT ?', [date, chunkSize]);
+                deletedRecords = result[0].affectedRows || 0;
                 console.log(`Deleted ${deletedRecords} records`);
             } catch (error) {
                 console.error('Error deleting records:', error);
