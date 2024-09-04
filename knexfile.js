@@ -11,4 +11,3 @@ module.exports = {
         ssl: process.env.DB_SSL === 'true' || process.env.DB_SSL === '1' ? { ca: fs.readFileSync(process.env.DB_SSL_CA) } : false,
     }
 };
-

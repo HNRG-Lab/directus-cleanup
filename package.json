@@ -1,7 +1,7 @@
 {
   "name": "@hnrg-lab/directus-cleanup",
   "description": "A CLI tool to clean up Directus activities",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "bin": "./src/index.js",
   "main": "./src/index.js",
   "license": "GPL-3.0",
@@ -12,7 +12,8 @@
   "dependencies": {
     "commander": "^12.1.0",
     "dotenv": "^16.4.5",
-    "knex": "^3.1.0"
+    "knex": "^3.1.0",
+    "mysql": "^2.18.1"
   },
   "repository": {
     "type": "git",
