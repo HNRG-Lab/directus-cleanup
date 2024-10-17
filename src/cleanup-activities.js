@@ -9,11 +9,32 @@ const cleanupActivities = async (days) => {
         date.setDate(date.getDate() - days);
 
         const chunkSize = parseInt(process.env.DB_ACTIVITIES_DELETE_CHUNK_SIZE, 10) || 5000;
-        let deletedRecords;
+        const dbClient = process.env.DB_CLIENT;
 
+        let deletedRecords = 0;
         do {
-            const result = await knex.raw('DELETE FROM directus_activity WHERE timestamp < ? ORDER BY timestamp DESC LIMIT ?', [date, chunkSize]);
-            deletedRecords = result[0].affectedRows || 0;
+            switch (dbClient) {
+                case 'mysql':
+                    const resultMysql = await knex.raw(`DELETE FROM directus_activity WHERE timestamp < ? LIMIT ?`, [date, chunkSize]);
+                    deletedRecords = resultMysql[0].affectedRows || 0;
+                    break;
+                case 'postgres':
+                case 'pg':
+                    const resultPg = await knex.raw(`
+                        DELETE FROM directus_activity
+                        WHERE id IN (
+                            SELECT id FROM directus_activity 
+                            WHERE timestamp < ? 
+                            LIMIT ?
+                        )
+                    `, [date, chunkSize]);
+                    deletedRecords = resultPg.rowCount || 0;
+                    break;
+                default:
+                    console.log(`Unsupported DB_CLIENT: ${dbClient}`);
+                    return;
+            }
+
             console.log(`Deleted ${deletedRecords} records`);
         } while (deletedRecords > 0);
 
